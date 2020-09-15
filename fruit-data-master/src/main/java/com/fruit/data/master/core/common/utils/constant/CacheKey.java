@@ -8,9 +8,9 @@ package com.fruit.data.master.core.common.utils.constant;
 public interface CacheKey {
 
     /**
-     * 手机发送验证码
+     * 手机卡
      */
-    String PHONE_VCODE = "-1";
+    String MOBILE_CARD_PHONE_NUM = "-1";
 
 
 

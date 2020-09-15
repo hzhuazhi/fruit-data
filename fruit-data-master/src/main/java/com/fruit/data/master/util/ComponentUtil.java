@@ -5,7 +5,7 @@ import com.fruit.data.master.core.common.redis.RedisIdService;
 import com.fruit.data.master.core.common.redis.RedisService;
 import com.fruit.data.master.core.common.utils.constant.LoadConstant;
 import com.fruit.data.master.core.service.BankService;
-import com.fruit.data.master.core.service.MerchantBankService;
+import com.fruit.data.master.core.service.MobileCardService;
 
 /**
  * 工具类
@@ -17,7 +17,7 @@ public class ComponentUtil {
 
 
     public static BankService bankService;
-    public static MerchantBankService merchantBankService;
+    public static MobileCardService mobileCardService;
 
 
 
