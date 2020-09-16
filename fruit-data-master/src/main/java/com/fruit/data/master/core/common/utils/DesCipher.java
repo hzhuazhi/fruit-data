@@ -122,10 +122,17 @@ public class DesCipher {
 	}
 
 	public static void main(String[] args) throws Exception{
-		String data = "{\"fixedNum\":13717505293,\"ctime\":201911071802959,\"cctime\":201911071802959,\"sign\":\"abcdefg\",\"token\":\"小五哥1111111122a哈哈\"}";
-//		String data = "{\"fixedNum\":13717505293,\"ctime\":201911071802959,\"cctime\":201911071802959,\"sign\":\"abcdefg\",\"token\":\"adcdef\"}";
+		long ctime = System.currentTimeMillis();
+		System.out.println("----ctime:" + ctime);
+		String sign = SignUtil.getSgin("13717511111", "1600179950588", "POIPLMLKJ");
+		System.out.println("----sign:" + sign);
+		String data = "{\"phoneNum\":13717511111,\"ctime\":1600179950588,\"sign\":\"1822325af0f6e713983f94c3e895bfd0\"}";
+//		String data = "{\"fixedNum\":13717511111,\"ctime\":1600179950588,\"cctime\":201911071802959,\"sign\":\"abcdefg\",\"token\":\"adcdef\"}";
 		String resData = encryptData(data);
+		System.out.println("----resData:" + resData);
 		String result = decryptData(resData);
 		System.out.println("----result:" + result);
+
+
 	}
 }

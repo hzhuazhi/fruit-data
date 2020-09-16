@@ -43,7 +43,8 @@ public class LoadConstant {
     @Value("${qrCode.url}")
     public String qrCodeUrl;
 
-
+    @Value("${secret.key.sign}")
+    public String secretKeySign;
 
 
 }
