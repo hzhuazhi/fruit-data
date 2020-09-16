@@ -1,5 +1,8 @@
 package com.fruit.data.master.core.common.redis;
 
+import com.fruit.data.master.core.model.mobilecard.MobileCardModel;
+import com.fruit.data.master.util.ComponentUtil;
+import com.fruit.data.master.util.HodgepodgeMethod;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.listener.KeyExpirationEventMessageListener;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
@@ -25,34 +28,15 @@ public class RedisKeyExpirationListener extends KeyExpirationEventMessageListene
      */
     @Override
     public void onMessage(Message message, byte[] pattern) {
-        // message.toString()可以获取失效的key
         String expiredKey = message.toString();
-//        System.out.println("expiredKey:" + expiredKey);
-        if (expiredKey.indexOf("FN-30-") > -1){
-            long did = Long.parseLong(expiredKey.substring("FN-30-".length()));
-            // 把用户抢单上下线状态修改成下线状态
+        System.out.println("expiredKey:" + expiredKey);
+        if (expiredKey.indexOf("FRD-2-") > -1){
+            String phoneNum = expiredKey.substring("FRD-2-".length());
 
-//            // 先锁住这个用户
-//            String lockKey_did = CachedKeyUtils.getCacheKey(CacheKey.LOCK_DID_ONOFF, did);
-//            boolean flagLock_did = ComponentUtil.redisIdService.lock(lockKey_did);
-//            if (flagLock_did){
-//                // 判断用户是否在上下线的表中有数据
-//                DidOnoffModel didOnoffQuery = HodgepodgeMethod.assembleDidOnoffQueryByDid(did);
-//                DidOnoffModel didOnoffData = (DidOnoffModel) ComponentUtil.didOnoffService.findByObject(didOnoffQuery);
-//                if (didOnoffData == null || didOnoffData.getId() <= 0){
-//                    // 添加数据
-//                    ComponentUtil.didOnoffService.add(didOnoffQuery);
-//                }else{
-//
-//                }
-//                // 解锁
-//                ComponentUtil.redisIdService.delLock(lockKey_did);
-//            }
-
-            // 下线（取消抢单）
             try{
-//                DidOnoffModel didOnoffUpdate = HodgepodgeMethod.assembleDidOnoffUpdate(did, 1);
-//                ComponentUtil.didOnoffService.updateDidOnoff(didOnoffUpdate);
+                // redis的key失效，表示在5秒内没有任何心跳；需要更新手机的心跳状态
+                MobileCardModel mobileCardUpdate = HodgepodgeMethod.assembleMobileCardUpdateHeartbeat(phoneNum, 1);
+                ComponentUtil.mobileCardService.updateHeartbeatStatus(mobileCardUpdate);
             }catch (Exception e){
                 e.printStackTrace();
             }
