@@ -61,4 +61,9 @@ public class MobileCardServiceImpl<T> extends BaseServiceImpl<T> implements Mobi
         }
         return dataModel;
     }
+
+    @Override
+    public int updateHeartbeatStatus(MobileCardModel model) {
+        return mobileCardMapper.updateHeartbeatStatus(model);
+    }
 }

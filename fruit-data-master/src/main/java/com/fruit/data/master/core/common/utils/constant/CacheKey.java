@@ -12,6 +12,11 @@ public interface CacheKey {
      */
     String MOBILE_CARD_PHONE_NUM = "-1";
 
+    /**
+     * 手机客户端的心跳
+     */
+    String MOBILE_CARD_HEARTBEAT = "-2";
+
 
 
 }

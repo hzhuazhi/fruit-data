@@ -20,4 +20,13 @@ public interface MobileCardService<T> extends BaseService<T> {
      * @date 2019/11/21 19:26
      */
     public MobileCardModel getMobileCard(MobileCardModel model, int isCache) throws Exception;
+
+    /**
+     * @Description: 更新手机卡的心跳
+     * @param model
+     * @return
+     * @author yoko
+     * @date 2020/9/16 11:22
+     */
+    public int updateHeartbeatStatus(MobileCardModel model);
 }

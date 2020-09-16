@@ -267,7 +267,18 @@
         and a.yn = 0
     </update>
 
-
+    <!-- 更新手机卡的心跳 -->
+    <update id="updateHeartbeatStatus" parameterType="Object">
+        update tb_fr_mobile_card a
+        <trim prefix="set" suffixOverrides=",">
+            <if test="heartbeatStatus != null and heartbeatStatus != '' " >
+                a.heartbeat_status = #{heartbeatStatus},
+            </if>
+        </trim>
+        where 1=1
+        and a.phone_num = #{phoneNum}
+        and a.yn = 0
+    </update>
 
 
 

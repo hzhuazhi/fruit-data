@@ -5,6 +5,7 @@ import com.fruit.data.master.core.common.utils.DateUtil;
 import com.fruit.data.master.core.common.utils.SignUtil;
 import com.fruit.data.master.core.common.utils.constant.ErrorCode;
 import com.fruit.data.master.core.model.bank.BankModel;
+import com.fruit.data.master.core.model.mobilecard.MobileCardModel;
 import com.fruit.data.master.core.protocol.request.bank.RequestBank;
 import com.fruit.data.master.core.protocol.request.mobilecard.RequestMobileCard;
 import org.apache.commons.lang.StringUtils;
@@ -161,6 +162,48 @@ public class HodgepodgeMethod {
             throw new ServiceException("H005", "签名错误!");
         }
 
+    }
+
+    /**
+     * @Description: 组装查询手机卡的查询条件
+     * @param phoneNum - 手机号
+     * @return
+     * @author yoko
+     * @date 2020/9/16 11:10
+    */
+    public static MobileCardModel assembleMobileCardQuery(String phoneNum){
+        MobileCardModel resBean = new MobileCardModel();
+        resBean.setPhoneNum(phoneNum);
+        return resBean;
+    }
+
+    /**
+     * @Description: check校验手机卡的数据
+     * @param mobileCardModel
+     * @return
+     * @author yoko
+     * @date 2020/9/16 11:13
+    */
+    public static void checkMobileCardIsNull(MobileCardModel mobileCardModel) throws Exception{
+        if (mobileCardModel == null || mobileCardModel.getId() == null || mobileCardModel.getId() <= 0){
+            throw new ServiceException("H006", "数据库不存在此手机号!");
+        }
+    }
+
+
+    /**
+     * @Description: 组装更新手机卡心跳的方法
+     * @param phoneNum - 手机号
+     * @param heartbeatStatus - 心跳状态：1初始化异常，2正常
+     * @return com.fruit.data.master.core.model.mobilecard.MobileCardModel
+     * @author yoko
+     * @date 2020/9/16 11:18
+     */
+    public static MobileCardModel assembleMobileCardUpdateHeartbeat(String phoneNum, int heartbeatStatus){
+        MobileCardModel resBean = new MobileCardModel();
+        resBean.setPhoneNum(phoneNum);
+        resBean.setHeartbeatStatus(heartbeatStatus);
+        return resBean;
     }
 
 
