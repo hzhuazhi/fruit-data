@@ -124,9 +124,9 @@ public class DesCipher {
 	public static void main(String[] args) throws Exception{
 		long ctime = System.currentTimeMillis();
 		System.out.println("----ctime:" + ctime);
-		String sign = SignUtil.getSgin("15967171404", "1600179950588", "POIPLMLKJ");
+		String sign = SignUtil.getSgin("15967171404", "1003", "POIPLMLKJ");
 		System.out.println("----sign:" + sign);
-		String data = "{\"phoneNum\":\"15967171404\",\"ctime\":1600179950588,\"sign\":\"9da47d0667313d46cb28dfc4af95635e\"}";
+		String data = "{\"content\":\"睡觉睡觉上课\",\"id\":\"1003\",\"messageCode\":\"13606706346\",\"page\":{},\"phone\":\"15967171404\",\"time\":\"2020-09-17 10:48:22\",\"sign\":\"5e1f792c6710d2382c2597f12d99f42e\"}";
 //		String data = "{\"fixedNum\":13717511111,\"ctime\":1600179950588,\"cctime\":201911071802959,\"sign\":\"abcdefg\",\"token\":\"adcdef\"}";
 		String resData = encryptData(data);
 		System.out.println("----resData:" + resData);

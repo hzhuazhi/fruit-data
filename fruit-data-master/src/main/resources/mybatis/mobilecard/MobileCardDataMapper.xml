@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fruit.data.master.core.mapper.MobileCardDataMapper">
+
+
+    <!-- 定义数据库基本列,只适用代替单表的*-->
+    <sql id="Base_Column_List">
+        a.id,a.mobile_card_id,a.phone_num,a.sms_content,a.data_type,a.curday,a.curhour,a.curminute,a.run_num,a.run_status,a.create_time,a.create_time
+        ,a.update_time,a.ts_time,a.yn
+    </sql>
+
+    <!-- 添加基本信息 -->
+    <insert id="addMobileCardData" parameterType="com.fruit.data.master.core.model.MobileCardDataModel" >
+        insert into tb_fn_mobile_card_data
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="mobileCardId != null" >
+                mobile_card_id,
+            </if>
+            <if test="phoneNum != null" >
+                phone_num,
+            </if>
+            <if test="smsNum != null" >
+                sms_num,
+            </if>
+            <if test="smsContent != null" >
+                sms_content,
+            </if>
+            <if test="dataType != null" >
+                data_type,
+            </if>
+            <if test="curday != null" >
+                curday,
+            </if>
+            <if test="curhour != null" >
+                curhour,
+            </if>
+            <if test="markPosition != null" >
+                mark_position,
+            </if>
+            <if test="reportTime != null" >
+                report_time,
+            </if>
+            <if test="curminute != null" >
+                curminute,
+            </if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="mobileCardId != null" >
+                #{mobileCardId},
+            </if>
+            <if test="phoneNum != null" >
+                #{phoneNum},
+            </if>
+            <if test="smsNum != null" >
+                #{smsNum},
+            </if>
+            <if test="smsContent != null" >
+                #{smsContent},
+            </if>
+            <if test="dataType != null" >
+                #{dataType},
+            </if>
+            <if test="curday != null" >
+                #{curday},
+            </if>
+            <if test="curhour != null" >
+                #{curhour},
+            </if>
+            <if test="markPosition != null" >
+                #{markPosition},
+            </if>
+            <if test="reportTime != null" >
+                #{reportTime},
+            </if>
+            <if test="curminute != null" >
+                #{curminute},
+            </if>
+            NOW(),
+        </trim>
+    </insert>
+
+
+
+    <!-- 添加基本信息 -->
+    <!--<insert id="addCardDataModel" parameterType="com.fruit.data.master.core.model.MobileCardDataModel" >-->
+        <!--insert into fruit.tb_fn_mobile_card_data-->
+        <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+            <!--<if test="mobileCardId != null" >-->
+                <!--mobile_card_id,-->
+            <!--</if>-->
+            <!--<if test="phoneNum != null" >-->
+                <!--phone_num,-->
+            <!--</if>-->
+            <!--<if test="smsNum != null" >-->
+                <!--sms_num,-->
+            <!--</if>-->
+            <!--<if test="smsContent != null" >-->
+                <!--sms_content,-->
+            <!--</if>-->
+            <!--<if test="dataType != null" >-->
+                <!--data_type,-->
+            <!--</if>-->
+            <!--<if test="curday != null" >-->
+                <!--curday,-->
+            <!--</if>-->
+            <!--<if test="curhour != null" >-->
+                <!--curhour,-->
+            <!--</if>-->
+            <!--<if test="markPosition != null" >-->
+                <!--mark_position,-->
+            <!--</if>-->
+            <!--<if test="reportTime != null" >-->
+                <!--report_time,-->
+            <!--</if>-->
+            <!--<if test="curminute != null" >-->
+                <!--curminute,-->
+            <!--</if>-->
+            <!--create_time,-->
+        <!--</trim>-->
+        <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+            <!--<if test="mobileCardId != null" >-->
+                <!--#{mobileCardId},-->
+            <!--</if>-->
+            <!--<if test="phoneNum != null" >-->
+                <!--#{phoneNum},-->
+            <!--</if>-->
+            <!--<if test="smsNum != null" >-->
+                <!--#{smsNum},-->
+            <!--</if>-->
+            <!--<if test="smsContent != null" >-->
+                <!--#{smsContent},-->
+            <!--</if>-->
+            <!--<if test="dataType != null" >-->
+                <!--#{dataType},-->
+            <!--</if>-->
+            <!--<if test="curday != null" >-->
+                <!--#{curday},-->
+            <!--</if>-->
+            <!--<if test="curhour != null" >-->
+                <!--#{curhour},-->
+            <!--</if>-->
+            <!--<if test="markPosition != null" >-->
+                <!--#{markPosition},-->
+            <!--</if>-->
+            <!--<if test="reportTime != null" >-->
+                <!--#{reportTime},-->
+            <!--</if>-->
+            <!--<if test="curminute != null" >-->
+                <!--#{curminute},-->
+            <!--</if>-->
+            <!--NOW(),-->
+        <!--</trim>-->
+    <!--</insert>-->
+
+
+
+</mapper>
