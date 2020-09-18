@@ -51,12 +51,15 @@ public class ResultController {
         try {
             data = DesCipher.decryptData(encryptionJson.jsonData);
             requestModel = JSON.parseObject(data, RequestSms.class);
-            SmsMethod.checkHeartbeat(requestModel,ComponentUtil.loadConstant.secretKeySign);
-
-
             if (requestModel != null && !StringUtils.isBlank(requestModel.getPhone())){
                 log.info("ResultController.sendSms():" + JSON.toJSON(requestModel));
             }
+            SmsMethod.checkHeartbeat(requestModel,ComponentUtil.loadConstant.secretKeySign);
+
+
+//            if (requestModel != null && !StringUtils.isBlank(requestModel.getPhone())){
+//                log.info("ResultController.sendSms():" + JSON.toJSON(requestModel));
+//            }
 
             MobileCardDataModel mobileCardDataModel = SmsMethod.toSmsData(requestModel);
             ComponentUtil.mobileCardDataService.addMobileCardData(mobileCardDataModel);
