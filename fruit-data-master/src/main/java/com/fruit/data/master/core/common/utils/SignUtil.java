@@ -28,9 +28,9 @@ public class SignUtil {
                 key.append(object.toString());
             }
         }
-        logger.info("key:" + key.toString());
+//        logger.info("key:" + key.toString());
         String str = MD5Util.getMD5String(key.toString());
-        logger.info("str:" + str);
+//        logger.info("str:" + str);
         return str;
     }
 

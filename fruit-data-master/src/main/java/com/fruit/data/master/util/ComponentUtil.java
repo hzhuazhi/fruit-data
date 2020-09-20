@@ -6,6 +6,7 @@ import com.fruit.data.master.core.common.redis.RedisService;
 import com.fruit.data.master.core.common.utils.constant.LoadConstant;
 import com.fruit.data.master.core.service.BankService;
 import com.fruit.data.master.core.service.MobileCardDataService;
+import com.fruit.data.master.core.service.MobileCardHeartbeatService;
 import com.fruit.data.master.core.service.MobileCardService;
 
 /**
@@ -20,6 +21,7 @@ public class ComponentUtil {
     public static BankService bankService;
     public static MobileCardService mobileCardService;
     public static MobileCardDataService mobileCardDataService;
+    public static MobileCardHeartbeatService mobileCardHeartbeatService;
 
 
 

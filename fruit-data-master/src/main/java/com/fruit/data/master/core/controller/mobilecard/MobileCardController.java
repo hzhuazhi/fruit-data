@@ -8,6 +8,7 @@ import com.fruit.data.master.core.common.utils.constant.CachedKeyUtils;
 import com.fruit.data.master.core.common.utils.constant.ServerConstant;
 import com.fruit.data.master.core.model.RequestEncryptionJson;
 import com.fruit.data.master.core.model.bank.BankModel;
+import com.fruit.data.master.core.model.mobilecard.MobileCardHeartbeatModel;
 import com.fruit.data.master.core.model.mobilecard.MobileCardModel;
 import com.fruit.data.master.core.protocol.request.bank.RequestBank;
 import com.fruit.data.master.core.protocol.request.mobilecard.RequestMobileCard;
@@ -90,6 +91,11 @@ public class MobileCardController {
                 // 表示中途心跳断开：现在又有心跳了，更新手机卡的心跳状态；更新成正常的心跳状态
                 MobileCardModel mobileCardUpdate = HodgepodgeMethod.assembleMobileCardUpdateHeartbeat(requestModel.phoneNum, 2);
                 ComponentUtil.mobileCardService.updateHeartbeatStatus(mobileCardUpdate);
+
+                // 添加手机卡心跳上线
+                MobileCardHeartbeatModel mobileCardHeartbeatModel = HodgepodgeMethod.assembleMobileCardHeartbeatAdd(0, requestModel.phoneNum, 1);
+                ComponentUtil.mobileCardHeartbeatService.add(mobileCardHeartbeatModel);
+
             }
             // redis存值
             ComponentUtil.redisService.set(strKeyCache, requestModel.phoneNum, FIVE_SECOND);

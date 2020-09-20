@@ -5,6 +5,7 @@ import com.fruit.data.master.core.common.redis.RedisService;
 import com.fruit.data.master.core.common.utils.constant.LoadConstant;
 import com.fruit.data.master.core.service.BankService;
 import com.fruit.data.master.core.service.MobileCardDataService;
+import com.fruit.data.master.core.service.MobileCardHeartbeatService;
 import com.fruit.data.master.core.service.MobileCardService;
 import com.fruit.data.master.util.ComponentUtil;
 import org.slf4j.Logger;
@@ -49,6 +50,9 @@ public class AutowireRunner implements ApplicationRunner {
     @Autowired
     private MobileCardDataService mobileCardDataService;
 
+    @Autowired
+    private MobileCardHeartbeatService mobileCardHeartbeatService;
+
 
 
 
@@ -67,6 +71,7 @@ public class AutowireRunner implements ApplicationRunner {
         ComponentUtil.bankService = bankService;
         ComponentUtil.mobileCardService = mobileCardService;
         ComponentUtil.mobileCardDataService = mobileCardDataService;
+        ComponentUtil.mobileCardHeartbeatService = mobileCardHeartbeatService;
 
         runThread = new RunThread();
         runThread.start();

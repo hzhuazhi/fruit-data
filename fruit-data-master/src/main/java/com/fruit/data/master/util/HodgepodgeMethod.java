@@ -5,6 +5,7 @@ import com.fruit.data.master.core.common.utils.DateUtil;
 import com.fruit.data.master.core.common.utils.SignUtil;
 import com.fruit.data.master.core.common.utils.constant.ErrorCode;
 import com.fruit.data.master.core.model.bank.BankModel;
+import com.fruit.data.master.core.model.mobilecard.MobileCardHeartbeatModel;
 import com.fruit.data.master.core.model.mobilecard.MobileCardModel;
 import com.fruit.data.master.core.protocol.request.bank.RequestBank;
 import com.fruit.data.master.core.protocol.request.mobilecard.RequestMobileCard;
@@ -12,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
 
 
 /**
@@ -204,6 +206,35 @@ public class HodgepodgeMethod {
         resBean.setPhoneNum(phoneNum);
         resBean.setHeartbeatStatus(heartbeatStatus);
         return resBean;
+    }
+
+
+    /**
+     * @Description: 组装添加手机卡心跳的方法
+     * @param mobileCardId - 手机卡的主键ID
+     * @param phoneNum - 手机号
+     * @param dataType - 数据类型：1心跳连接上线，2心跳连接下线
+     * @return com.fruit.data.master.core.model.mobilecard.MobileCardHeartbeatModel
+     * @author yoko
+     * @date 2020/9/20 14:52
+     */
+    public static MobileCardHeartbeatModel assembleMobileCardHeartbeatAdd(long mobileCardId, String phoneNum, int dataType){
+        MobileCardHeartbeatModel resBean = new MobileCardHeartbeatModel();
+        if (mobileCardId > 0){
+            resBean.setMobileCardId(mobileCardId);
+        }
+        if (!StringUtils.isBlank(phoneNum)){
+            resBean.setPhoneNum(phoneNum);
+        }
+        if (dataType > 0){
+            resBean.setDataType(dataType);
+        }
+
+        resBean.setCurday(DateUtil.getDayNumber(new Date()));
+        resBean.setCurhour(DateUtil.getHour(new Date()));
+        resBean.setCurminute(DateUtil.getCurminute(new Date()));
+        return resBean;
+
     }
 
 

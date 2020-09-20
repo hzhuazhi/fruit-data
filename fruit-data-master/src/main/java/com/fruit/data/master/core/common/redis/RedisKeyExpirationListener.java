@@ -1,5 +1,6 @@
 package com.fruit.data.master.core.common.redis;
 
+import com.fruit.data.master.core.model.mobilecard.MobileCardHeartbeatModel;
 import com.fruit.data.master.core.model.mobilecard.MobileCardModel;
 import com.fruit.data.master.util.ComponentUtil;
 import com.fruit.data.master.util.HodgepodgeMethod;
@@ -29,7 +30,7 @@ public class RedisKeyExpirationListener extends KeyExpirationEventMessageListene
     @Override
     public void onMessage(Message message, byte[] pattern) {
         String expiredKey = message.toString();
-        System.out.println("expiredKey:" + expiredKey);
+//        System.out.println("expiredKey:" + expiredKey);
         if (expiredKey.indexOf("FRD-2-") > -1){
             String phoneNum = expiredKey.substring("FRD-2-".length());
 
@@ -37,6 +38,10 @@ public class RedisKeyExpirationListener extends KeyExpirationEventMessageListene
                 // redis的key失效，表示在5秒内没有任何心跳；需要更新手机的心跳状态
                 MobileCardModel mobileCardUpdate = HodgepodgeMethod.assembleMobileCardUpdateHeartbeat(phoneNum, 1);
                 ComponentUtil.mobileCardService.updateHeartbeatStatus(mobileCardUpdate);
+
+                // 添加手机卡心跳下线
+                MobileCardHeartbeatModel mobileCardHeartbeatModel = HodgepodgeMethod.assembleMobileCardHeartbeatAdd(0, phoneNum, 2);
+                ComponentUtil.mobileCardHeartbeatService.add(mobileCardHeartbeatModel);
             }catch (Exception e){
                 e.printStackTrace();
             }
