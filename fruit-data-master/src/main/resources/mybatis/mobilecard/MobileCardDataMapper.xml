@@ -11,7 +11,7 @@
 
     <!-- 添加基本信息 -->
     <insert id="addMobileCardData" parameterType="com.fruit.data.master.core.model.MobileCardDataModel" >
-        insert into tb_fn_mobile_card_data
+        insert into tb_fr_mobile_card_short_msg
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="mobileCardId != null" >
                 mobile_card_id,
