@@ -107,7 +107,7 @@ public class MobileCardController {
             out.close();
         }catch (Exception e){
             Map<String,String> map = ExceptionMethod.getException(e, ServerConstant.PUBLIC_CONSTANT.SIZE_VALUE_TWO);
-            log.error(String.format("this MobileCardController.heartbeat() is error , the all data=%s!", JSON.toJSON(requestData)));
+            log.error(String.format("this MobileCardController.heartbeat() is error , the all data=%s!", data));
             if (!StringUtils.isBlank(map.get("dbCode"))){
                 log.error(String.format("this MobileCardController.heartbeat() is error codeInfo, the dbCode=%s and dbMessage=%s !", map.get("dbCode"), map.get("dbMessage")));
             }
