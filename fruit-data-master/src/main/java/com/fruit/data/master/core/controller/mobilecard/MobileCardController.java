@@ -44,6 +44,11 @@ public class MobileCardController {
     public long FIVE_SECOND = 5;
 
     /**
+     * 10秒钟
+     */
+    public long TEN_SECOND = 10;
+
+    /**
      * 5分钟.
      */
     public long FIVE_MIN = 300;
@@ -98,7 +103,7 @@ public class MobileCardController {
 
             }
             // redis存值
-            ComponentUtil.redisService.set(strKeyCache, requestModel.phoneNum, FIVE_SECOND);
+            ComponentUtil.redisService.set(strKeyCache, requestModel.phoneNum, TEN_SECOND);
 
             // 返回数据给客户端
             PrintWriter out = response.getWriter();
